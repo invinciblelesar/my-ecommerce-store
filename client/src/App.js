@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const products = [
   { id: 1, name: "Colmi P71 Smartwatch (AMOLED)", price: "2,250", oldPrice: "2,850", img: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=500", tag: "Hot", stock: 5 },
@@ -13,9 +13,26 @@ const products = [
   { id: 10, name: "Electric Kettle (Stainless)", price: "1,450", oldPrice: "2,100", img: "/images/Electric Kettle.jpg", tag: "Home Basic", stock: 4 }
 ];
 
+const cities = ["Dhaka", "Chittagong", "Sylhet", "Rajshahi", "Khulna", "Gazipur", "Narayanganj"];
+
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
-  const myNumber = "8801745872364"; // Corrected Number
+  const [notification, setNotification] = useState(null);
+  const myNumber = "8801745872364";
+
+  // LOGIC FOR SALES NOTIFICATION
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const randomProduct = products[Math.floor(Math.random() * products.length)];
+      const randomCity = cities[Math.floor(Math.random() * cities.length)];
+      setNotification({ product: randomProduct.name, city: randomCity });
+      
+      // Hide notification after 5 seconds
+      setTimeout(() => setNotification(null), 5000);
+    }, 12000); // Show new notification every 12 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleWhatsApp = (pName) => {
     const msg = `Hi! I want to buy the ${pName} from BD Trend Store. Is it in stock?`;
@@ -37,12 +54,13 @@ function App() {
         <p style={{ margin: '0 0 15px', fontSize: '14px', color: '#cbd5e0' }}>Hotline: 01745872364</p>
         <input 
           type="text" 
-          placeholder="Search gadgets (Watch, Charger...)" 
+          placeholder="Search gadgets..." 
           onChange={(e) => setSearchTerm(e.target.value)}
           style={{ width: '90%', maxWidth: '400px', padding: '12px', borderRadius: '30px', border: 'none', outline: 'none' }}
         />
       </nav>
 
+      {/* PRODUCTS */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', padding: '30px', maxWidth: '1200px', margin: '0 auto' }}>
         {filteredProducts.map(p => (
           <div key={p.id} style={{ backgroundColor: 'white', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
@@ -52,14 +70,11 @@ function App() {
             </div>
             <div style={{ padding: '20px', textAlign: 'center' }}>
               <h3 style={{ fontSize: '17px', margin: '0 0 10px', color: '#2d3748' }}>{p.name}</h3>
-              
               <div style={{ marginBottom: '10px' }}>
                 <span style={{ fontSize: '24px', fontWeight: 'bold', color: '#2f855a' }}>৳ {p.price}</span>
                 <span style={{ fontSize: '16px', color: '#a0aec0', textDecoration: 'line-through', marginLeft: '10px' }}>৳ {p.oldPrice}</span>
               </div>
-              
               <p style={{ fontSize: '13px', color: '#e53e3e', fontWeight: 'bold', marginBottom: '15px' }}>🔥 Only {p.stock} left in stock!</p>
-              
               <button onClick={() => handleWhatsApp(p.name)} style={{ width: '100%', backgroundColor: '#25D366', color: 'white', border: 'none', padding: '13px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', fontSize: '16px' }}>
                 Order via WhatsApp
               </button>
@@ -68,10 +83,30 @@ function App() {
         ))}
       </div>
 
-      {/* Floating Chat Bubble */}
+      {/* SALES NOTIFICATION POPUP */}
+      {notification && (
+        <div style={{ position: 'fixed', bottom: '20px', left: '20px', backgroundColor: 'white', padding: '15px', borderRadius: '10px', boxShadow: '0 10px 25px rgba(0,0,0,0.2)', borderLeft: '5px solid #25D366', zIndex: 2000, display: 'flex', alignItems: 'center', gap: '10px', animation: 'slideIn 0.5s ease-out' }}>
+          <div style={{ fontSize: '20px' }}>✅</div>
+          <div>
+            <p style={{ margin: 0, fontSize: '12px', color: '#718096' }}>Recent Purchase</p>
+            <p style={{ margin: 0, fontSize: '14px', fontWeight: 'bold' }}>Someone in {notification.city}</p>
+            <p style={{ margin: 0, fontSize: '13px' }}>just bought {notification.product}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Floating Chat */}
       <div onClick={() => window.open(`https://wa.me/${myNumber}`)} style={{ position: 'fixed', bottom: '30px', right: '30px', backgroundColor: '#25D366', width: '65px', height: '65px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 10px 25px rgba(0,0,0,0.3)', cursor: 'pointer', zIndex: 1000, fontSize: '32px' }}>
         💬
       </div>
+
+      {/* Styles for animation */}
+      <style>{`
+        @keyframes slideIn {
+          from { transform: translateX(-100%); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+      `}</style>
     </div>
   );
 }
