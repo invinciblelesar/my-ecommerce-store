@@ -1,19 +1,22 @@
 import React from 'react';
 
-// Trending Products for Bangladesh 2026
+// Reliable 2026 Trending Product Data
 const products = [
-  { id: 1, name: "Colmi P71 Smartwatch (AMOLED)", price: "2,250", img: "https://www.startech.com.bd/image/cache/catalog/smart-watch/colmi/p71/p71-black-01-500x500.webp", tag: "Hot" },
-  { id: 2, name: "M10 TWS Wireless Earbuds", price: "650", img: "https://m.media-amazon.com/images/I/516999F06EL._SL1000_.jpg", tag: "Best Seller" },
-  { id: 3, name: "Kemei KM-632 Hair Trimmer", price: "1,150", img: "https://m.media-amazon.com/images/I/61l0iX-3t2L._SL1500_.jpg", tag: "Sale" },
-  { id: 4, name: "Baseus 65W GaN Fast Charger", price: "2,800", img: "https://m.media-amazon.com/images/I/51-P9M7E2rL._AC_SL1500_.jpg", tag: "New" }
+  { id: 1, name: "Colmi P71 Smartwatch (AMOLED)", price: "2,250", img: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=500&q=80", tag: "Hot" },
+  { id: 2, name: "M10 TWS Wireless Earbuds", price: "650", img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=500&q=80", tag: "Best Seller" },
+  { id: 3, name: "Kemei KM-632 Hair Trimmer", price: "1,150", img: "https://images.unsplash.com/photo-1621607512214-68297480165e?auto=format&fit=crop&w=500&q=80", tag: "Sale" },
+  { id: 4, name: "Baseus 65W GaN Fast Charger", price: "2,800", img: "https://images.unsplash.com/photo-1619130700003-8d631393663a?auto=format&fit=crop&w=500&q=80", tag: "New" }
 ];
 
 function App() {
   const handleWhatsApp = (pName) => {
-    const phone = "8801XXXXXXXXX"; // 👈 PUT YOUR REAL NUMBER HERE
+    // UPDATED WITH YOUR NUMBER: 0174587364
+    const phone = "880174587364"; 
     const msg = `Hi! I want to buy the ${pName} from BD Trend Store. Is it in stock?`;
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
   };
+  
+  // ... rest of your return code remains the same
 
   return (
     <div style={{ backgroundColor: '#f4f7f6', minHeight: '100vh', fontFamily: 'Arial, sans-serif' }}>
