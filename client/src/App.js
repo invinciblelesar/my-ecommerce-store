@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
 
-// 1. Updated Product Data
+// 1. Product Data
 const products = [
   { id: 1, name: "Colmi P71 Smartwatch (AMOLED)", price: 2250, img: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=500" },
   { id: 2, name: "M10 TWS Wireless Earbuds", price: 650, img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500" },
   { id: 3, name: "Kemei KM-632 Hair Trimmer", price: 1150, img: "https://images.unsplash.com/photo-1621607512214-68297480165e?w=500" },
   { id: 4, name: "Baseus 65W GaN Fast Charger", price: 2800, img: "https://images.unsplash.com/photo-1616627547584-bf28cee262db?w=500" }
-];
-
-// 2. Your New Review Videos
-const videoReviews = [
-  { id: 1, title: "M10 TWS In-Depth Bangla Review", embedId: "95F1yrI-B68" }, 
-  { id: 2, title: "M10 Wireless Earbuds Features", embedId: "WLWbamNLTRo" }
 ];
 
 function App() {
@@ -24,7 +18,7 @@ function App() {
   const [newName, setNewName] = useState("");
   const [newText, setNewText] = useState("");
   const [newRating, setNewRating] = useState("5");
-  const myNumber = "0174587364";
+  const myNumber = "0174587364"; // Updated your number here
 
   const addReview = (e) => {
     e.preventDefault();
@@ -36,18 +30,18 @@ function App() {
   };
 
   return (
-    <div style={{ backgroundColor: '#f8fafc', minHeight: '100vh', fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif' }}>
+    <div style={{ backgroundColor: '#f8fafc', minHeight: '100vh', fontFamily: 'Segoe UI, Tahoma, sans-serif' }}>
       
       {/* Header */}
       <nav style={{ backgroundColor: '#1e293b', color: 'white', padding: '25px', textAlign: 'center', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
         <h1 style={{ margin: 0, fontSize: '28px' }}>🛒 BD Trend Store</h1>
-        <p style={{ margin: '5px 0 0', fontSize: '14px', opacity: 0.8 }}>Premium Electronics • Cash on Delivery • Order: {myNumber}</p>
+        <p style={{ margin: '5px 0 0', fontSize: '14px', opacity: 0.8 }}>Premium Electronics • Cash on Delivery • WhatsApp: {myNumber}</p>
       </nav>
 
       {/* Product Grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '25px', padding: '40px', maxWidth: '1200px', margin: '0 auto' }}>
         {products.map(p => (
-          <div key={p.id} style={{ backgroundColor: 'white', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', textAlign: 'center', transition: 'transform 0.2s' }}>
+          <div key={p.id} style={{ backgroundColor: 'white', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', textAlign: 'center' }}>
             <img src={p.img} alt={p.name} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
             <div style={{ padding: '20px' }}>
               <h3 style={{ fontSize: '18px', color: '#1e293b', marginBottom: '10px' }}>{p.name}</h3>
@@ -63,30 +57,9 @@ function App() {
         ))}
       </div>
 
-      {/* Video Reviews Section */}
-      <div style={{ backgroundColor: '#f1f5f9', padding: '60px 20px' }}>
-        <h2 style={{ textAlign: 'center', color: '#1e293b', marginBottom: '40px' }}>📹 Watch Before You Buy</h2>
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '30px', maxWidth: '1100px', margin: '0 auto' }}>
-          {videoReviews.map(v => (
-            <div key={v.id} style={{ width: '100%', maxWidth: '500px', backgroundColor: 'white', padding: '15px', borderRadius: '20px', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)' }}>
-              <iframe 
-                width="100%" 
-                height="280" 
-                src={`https://www.youtube.com/embed/${v.embedId}`} 
-                title={v.title} 
-                frameBorder="0" 
-                allowFullScreen 
-                style={{ borderRadius: '12px' }}
-              ></iframe>
-              <p style={{ textAlign: 'center', fontWeight: '600', marginTop: '15px', color: '#334155' }}>{v.title}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Combined Review Section */}
+      {/* Review Section */}
       <div style={{ maxWidth: '1000px', margin: '60px auto', padding: '0 20px' }}>
-        <h2 style={{ textAlign: 'center', color: '#1e293b', marginBottom: '40px' }}>What Our Customers Say</h2>
+        <h2 style={{ textAlign: 'center', color: '#1e293b', marginBottom: '40px' }}>Customer Feedback</h2>
         
         {/* Review Form */}
         <div style={{ backgroundColor: 'white', padding: '30px', borderRadius: '20px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)', marginBottom: '50px' }}>
@@ -100,12 +73,12 @@ function App() {
                 <option value="3">⭐⭐⭐ (Average)</option>
               </select>
             </div>
-            <textarea placeholder="Write your experience with our products..." value={newText} onChange={(e) => setNewText(e.target.value)} style={{ padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', height: '100px', resize: 'vertical' }} />
+            <textarea placeholder="Write your experience..." value={newText} onChange={(e) => setNewText(e.target.value)} style={{ padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', height: '100px', resize: 'vertical' }} />
             <button type="submit" style={{ padding: '14px', backgroundColor: '#3b82f6', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', fontSize: '16px' }}>Submit Review</button>
           </form>
         </div>
 
-        {/* Review List */}
+        {/* Display Reviews */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
           {reviews.map(r => (
             <div key={r.id} style={{ backgroundColor: 'white', padding: '25px', borderRadius: '15px', borderTop: '4px solid #3b82f6', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
@@ -119,8 +92,8 @@ function App() {
 
       {/* Footer */}
       <footer style={{ textAlign: 'center', padding: '60px 20px', backgroundColor: '#1e293b', color: 'white', marginTop: '80px' }}>
-        <p style={{ margin: 0 }}>© 2026 BD Trend Store. All Rights Reserved.</p>
-        <p style={{ margin: '10px 0 0', opacity: 0.7 }}>Elephant Road, Dhaka, Bangladesh | WhatsApp: {myNumber}</p>
+        <p style={{ margin: 0 }}>© 2026 BD Trend Store. Elephant Road, Dhaka.</p>
+        <p style={{ margin: '10px 0 0', opacity: 0.7 }}>Hotline: {myNumber}</p>
       </footer>
 
     </div>
