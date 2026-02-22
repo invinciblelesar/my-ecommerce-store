@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 
 const products = [
-  { id: 1, name: "Colmi P71 Smartwatch (AMOLED)", price: "2,250", img: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=500&q=80", tag: "Hot" },
-  { id: 2, name: "M10 TWS Wireless Earbuds", price: "650", img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=500&q=80", tag: "Best Seller" },
-  { id: 3, name: "Kemei KM-632 Hair Trimmer", price: "1,150", img: "https://images.unsplash.com/photo-1621607512214-68297480165e?auto=format&fit=crop&w=500&q=80", tag: "Sale" },
-  { id: 4, name: "Baseus 65W GaN Fast Charger", price: "2,800", img: "https://images.unsplash.com/photo-1619130700003-8d631393663a?auto=format&fit=crop&w=500&q=80", tag: "New" },
-  { id: 5, name: "Mechanical Gaming Keyboard", price: "3,200", img: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=500&q=80", tag: "Gamers Choice" },
-  { id: 6, name: "20,000mAh Power Bank", price: "2,450", img: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=500&q=80", tag: "Travel Essential" },
-  { id: 7, name: "Mini WiFi IP Camera", price: "1,850", img: "https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?auto=format&fit=crop&w=500&q=80", tag: "Security" },
-  { id: 8, name: "Portable Air Fryer 4L", price: "6,500", img: "https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&w=500&q=80", tag: "Kitchen Tech" },
-  { id: 9, name: "Smart Health Ring", price: "4,200", img: "https://images.unsplash.com/photo-1589118949245-7d48d545844e?auto=format&fit=crop&w=500&q=80", tag: "2026 Trend" },
-  { id: 10, name: "Electric Kettle (Stainless)", price: "1,450", img: "https://images.unsplash.com/photo-1520915569674-4217117f781c?auto=format&fit=crop&w=500&q=80", tag: "Home Basic" }
+  { id: 1, name: "Colmi P71 Smartwatch (AMOLED)", price: "2,250", img: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=500", tag: "Hot" },
+  { id: 2, name: "M10 TWS Wireless Earbuds", price: "650", img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500", tag: "Best Seller" },
+  { id: 3, name: "Kemei KM-632 Hair Trimmer", price: "1,150", img: "https://images.unsplash.com/photo-1621607512214-68297480165e?w=500", tag: "Sale" },
+  { id: 4, name: "Baseus 65W GaN Fast Charger", price: "2,800", img: "https://images.unsplash.com/photo-1619130700003-8d631393663a?w=500", tag: "New" },
+  { id: 5, name: "Mechanical Gaming Keyboard", price: "3,200", img: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=500", tag: "Gamers Choice" },
+  { id: 6, name: "20,000mAh Power Bank", price: "2,450", img: "https://images.pstatic.net/common/?src=https://m.media-amazon.com/images/I/61m668Iv9XL.jpg", tag: "Travel Essential" },
+  { id: 7, name: "Mini WiFi IP Camera", price: "1,850", img: "https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?w=500", tag: "Security" },
+  { id: 8, name: "Portable Air Fryer 4L", price: "6,500", img: "https://images.unsplash.com/photo-1626074353765-517a681e40be?w=500", tag: "Kitchen Tech" },
+  { id: 9, name: "Smart Health Ring", price: "4,200", img: "https://images.pstatic.net/common/?src=https://m.media-amazon.com/images/I/51pBcl697OL.jpg", tag: "2026 Trend" },
+  { id: 10, name: "Electric Kettle (Stainless)", price: "1,450", img: "https://images.pstatic.net/common/?src=https://m.media-amazon.com/images/I/61KxGv20I9L.jpg", tag: "Home Basic" }
+];
+
+const reviews = [
+  { id: 1, name: "Rahat Ibrahim", text: "Product quality is 10/10. Received the charger in Dhaka within 24 hours!", rating: "⭐⭐⭐⭐⭐" },
+  { id: 2, name: "Nusrat Jahan", text: "Ordered the smartwatch. Original product and very helpful WhatsApp support.", rating: "⭐⭐⭐⭐⭐" },
+  { id: 3, name: "Tanvir Ahmed", text: "Lowest price in BD for the Kemei trimmer. Very satisfied with COD service.", rating: "⭐⭐⭐⭐" }
 ];
 
 function App() {
@@ -22,46 +28,52 @@ function App() {
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
   };
 
-  const filteredProducts = products.filter(p => 
-    p.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredProducts = products.filter(p => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
-    <div style={{ backgroundColor: '#f0f2f5', minHeight: '100vh', fontFamily: 'Segoe UI, sans-serif' }}>
-      <nav style={{ backgroundColor: '#1a202c', color: 'white', padding: '20px', textAlign: 'center', position: 'sticky', top: 0, zIndex: 1000 }}>
-        <h1 style={{ margin: 0 }}>🛒 BD Trend Store</h1>
-        <p style={{ margin: '5px 0 15px', color: '#cbd5e0' }}>Order: 0174587364</p>
-        
-        {/* Search Bar */}
+    <div style={{ backgroundColor: '#f7fafc', minHeight: '100vh', fontFamily: 'system-ui' }}>
+      {/* Search & Header */}
+      <nav style={{ backgroundColor: '#2d3748', color: 'white', padding: '25px', textAlign: 'center', position: 'sticky', top: 0, zIndex: 100 }}>
+        <h1 style={{ margin: '0 0 15px' }}>🛒 BD Trend Store</h1>
         <input 
           type="text" 
-          placeholder="Search for products (e.g. Watch, Charger)..." 
+          placeholder="Search products..." 
           onChange={(e) => setSearchTerm(e.target.value)}
-          style={{ width: '80%', maxWidth: '500px', padding: '12px', borderRadius: '25px', border: 'none', outline: 'none', fontSize: '16px' }}
+          style={{ width: '90%', maxWidth: '400px', padding: '12px', borderRadius: '30px', border: 'none', outline: 'none' }}
         />
       </nav>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '25px', padding: '40px', maxWidth: '1300px', margin: '0 auto' }}>
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map(p => (
-            <div key={p.id} style={{ backgroundColor: 'white', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
-              <div style={{ position: 'relative' }}>
-                <img src={p.img} alt={p.name} style={{ width: '100%', height: '250px', objectFit: 'cover' }} />
-                <span style={{ position: 'absolute', top: '12px', right: '12px', backgroundColor: '#fed7d7', color: '#c53030', padding: '4px 12px', borderRadius: '20px', fontSize: '12px', fontWeight: 'bold' }}>{p.tag}</span>
-              </div>
-              <div style={{ padding: '20px', textAlign: 'center' }}>
-                <h3 style={{ fontSize: '18px', color: '#2d3748', marginBottom: '10px' }}>{p.name}</h3>
-                <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#2f855a', margin: '0 0 20px' }}>৳ {p.price}</p>
-                <button onClick={() => handleWhatsApp(p.name)} style={{ width: '100%', backgroundColor: '#25D366', color: 'white', border: 'none', padding: '14px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer' }}>
-                  Order via WhatsApp
-                </button>
-              </div>
+      {/* Product List */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', padding: '30px', maxWidth: '1200px', margin: '0 auto' }}>
+        {filteredProducts.map(p => (
+          <div key={p.id} style={{ backgroundColor: 'white', borderRadius: '15px', overflow: 'hidden', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
+            <img src={p.img} alt={p.name} style={{ width: '100%', height: '220px', objectFit: 'cover' }} />
+            <div style={{ padding: '20px', textAlign: 'center' }}>
+              <h3 style={{ fontSize: '18px', margin: '0 0 10px' }}>{p.name}</h3>
+              <p style={{ fontSize: '22px', fontWeight: 'bold', color: '#38a169', marginBottom: '15px' }}>৳ {p.price}</p>
+              <button onClick={() => handleWhatsApp(p.name)} style={{ width: '100%', backgroundColor: '#25D366', color: 'white', border: 'none', padding: '12px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer' }}>Order via WhatsApp</button>
             </div>
-          ))
-        ) : (
-          <h2 style={{ textAlign: 'center', gridColumn: '1/-1', color: '#718096' }}>No products found!</h2>
-        )}
+          </div>
+        ))}
       </div>
+
+      {/* Testimonials Section */}
+      <div style={{ backgroundColor: '#edf2f7', padding: '50px 20px', marginTop: '40px' }}>
+        <h2 style={{ textAlign: 'center', marginBottom: '30px' }}>What Our Customers Say</h2>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px' }}>
+          {reviews.map(r => (
+            <div key={r.id} style={{ backgroundColor: 'white', padding: '20px', borderRadius: '12px', maxWidth: '300px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
+              <p style={{ fontSize: '14px', fontStyle: 'italic', color: '#4a5568' }}>"{r.text}"</p>
+              <h4 style={{ margin: '10px 0 5px' }}>{r.name}</h4>
+              <span>{r.rating}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <footer style={{ textAlign: 'center', padding: '30px', color: '#718096' }}>
+        © 2026 BD Trend Store. All Rights Reserved.
+      </footer>
     </div>
   );
 }
